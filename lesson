@@ -1,0 +1,126 @@
+# Matplotlib 中文入门教程
+
+Matplotlib 是 Python 中最常用的绘图库之一，适用于绘制各种静态、动态和交互式图表。本文将介绍 Matplotlib 的基础用法，并解决 Matplotlib 中文字体显示的问题。
+
+## 1. 安装 Matplotlib
+
+在使用 Matplotlib 之前，需要先安装它。可以使用以下命令安装：
+
+```bash
+pip install matplotlib
+```
+
+## 2. 快速绘制一张折线图
+
+```python
+import matplotlib.pyplot as plt
+import numpy as np
+
+# 生成数据
+x = np.linspace(0, 10, 100)
+y = np.sin(x)
+
+# 创建图表
+plt.plot(x, y, label='正弦函数')
+plt.xlabel('X 轴')
+plt.ylabel('Y 轴')
+plt.title('Matplotlib 折线图')
+plt.legend()
+plt.show()
+```
+
+## 3. 解决 Matplotlib 中文显示问题
+
+默认情况下，Matplotlib 可能无法正确显示中文。可以使用 `matplotlib.font_manager` 设置支持中文的字体，例如 `SimHei`（黑体）。
+
+```python
+import matplotlib.pyplot as plt
+import matplotlib
+
+# 设置字体
+matplotlib.rcParams['font.sans-serif'] = ['SimHei']  # 使用黑体
+matplotlib.rcParams['axes.unicode_minus'] = False  # 解决负号显示问题
+```
+
+## 4. 绘制柱状图
+
+```python
+labels = ['A', 'B', 'C', 'D']
+values = [10, 20, 15, 25]
+
+plt.bar(labels, values, color='skyblue')
+plt.xlabel('类别')
+plt.ylabel('值')
+plt.title('Matplotlib 柱状图')
+plt.show()
+```
+
+## 5. 绘制散点图
+
+```python
+x = np.random.rand(50)
+y = np.random.rand(50)
+colors = np.random.rand(50)
+sizes = np.random.rand(50) * 300
+
+plt.scatter(x, y, c=colors, s=sizes, alpha=0.5)
+plt.xlabel('X 轴')
+plt.ylabel('Y 轴')
+plt.title('Matplotlib 散点图')
+plt.show()
+```
+
+## 6. 绘制直方图
+
+```python
+data = np.random.randn(1000)
+plt.hist(data, bins=30, color='purple', alpha=0.7)
+plt.xlabel('数值')
+plt.ylabel('频数')
+plt.title('Matplotlib 直方图')
+plt.show()
+```
+
+## 7. 子图（多图绘制）
+
+```python
+fig, axes = plt.subplots(2, 2, figsize=(10, 8))
+
+x = np.linspace(0, 10, 100)
+y1 = np.sin(x)
+y2 = np.cos(x)
+
+axes[0, 0].plot(x, y1, label='sin')
+axes[0, 0].set_title('正弦函数')
+axes[0, 0].legend()
+
+axes[0, 1].plot(x, y2, label='cos', color='r')
+axes[0, 1].set_title('余弦函数')
+axes[0, 1].legend()
+
+axes[1, 0].bar(['A', 'B', 'C', 'D'], [5, 7, 3, 8], color='g')
+axes[1, 0].set_title('柱状图')
+
+axes[1, 1].hist(np.random.randn(1000), bins=30, color='b', alpha=0.5)
+axes[1, 1].set_title('直方图')
+
+plt.tight_layout()
+plt.show()
+```
+
+## 8. 保存图像
+
+可以使用 `savefig()` 方法将图表保存为文件。
+
+```python
+plt.plot(x, y)
+plt.savefig('plot.png', dpi=300, bbox_inches='tight')  # 高质量保存
+plt.show()
+```
+
+## 9. 总结
+
+本文介绍了 Matplotlib 的基本用法，包括折线图、柱状图、散点图、直方图及如何支持中文显示等。掌握这些基础知识后，可以更深入地学习 Matplotlib 的高级功能，如 3D 绘图、交互式绘图等。
+
+希望本教程对你有所帮助！
+
